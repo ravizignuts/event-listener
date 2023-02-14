@@ -2,6 +2,7 @@
 
 use App\Event\UserCreated;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SharePostController;
 use App\Http\Controllers\UserAuth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('sharepost', function () {
+Route::get('sharepost/{id}', function () {
     return view('post');
 });
 
@@ -37,4 +38,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get('index',[UserAuth::class,'index']);
+
+Route::controller(SharePostController::class)->group(function(){
+    Route::post('addpost/{id}','AddPost');
+});
 //return event(new UserCreated($user));

@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Event;
+namespace App\Providers\App\Event;
 
-use App\Models\User;
-use App\Models\UserLoginHistory;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
-class UserCreated implements ShouldQueue
+class UserCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -22,10 +19,9 @@ class UserCreated implements ShouldQueue
      *
      * @return void
      */
-    public $user;
-    public function __construct($user)
+    public function __construct()
     {
-        $this->user = $user;
+        //
     }
 
     /**

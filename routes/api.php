@@ -1,6 +1,11 @@
 <?php
 
+use App\Mail\userlogin;
+use App\Event\UserCreated;
 use Illuminate\Http\Request;
+use App\Events\SendMailEvent;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +19,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Route::middleware('auth:sanctum')->group(function(){
+
+    Route::get('event',function(){
+        $user = [
+            'name'  => 'abc',
+            'email'  => 'abc@gmail.com',
+        ];
+        // dd($user['email']);
+        // Mail::to($user['email'])->send(new userlogin($user));
+        event(new SendMailEvent($user));
+    });
+// });

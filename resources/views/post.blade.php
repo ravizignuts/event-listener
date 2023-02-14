@@ -29,7 +29,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post">
+                    <form action="/addpost/{{ Auth::user()->id }}" method="post">
                         @csrf
                         <div class="row mb-3">
                             <label for="title" class="form-label">Title</label>
@@ -37,11 +37,11 @@
                         </div><br>
                         <label for="content" class="form-label">Content</label>
                         <textarea name="content" id="content" cols="30" rows="10"></textarea><br>
-                    </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save </button>
+                    <button type="submit" class="btn btn-primary">Save </button></form>
                 </div>
             </div>
         </div>
