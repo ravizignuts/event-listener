@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}<br><br>
-                    <a href="/sharepost" class="text-gray-900 dark:text-gray-100 sm:rounded-lg" style="background: rgb(154, 109, 245); font-size: 20px; padding: 5px;" data-toggle="modal" data-target="#exampleModal">Create Post</a>
+                    <a href="/sharepost/{{ Auth::user()->id }}" class="text-gray-900 dark:text-gray-100 sm:rounded-lg" style="background: rgb(154, 109, 245); font-size: 20px; padding: 5px;" data-toggle="modal" data-target="#exampleModal">Create Post</a>
                 </div>
             </div>
         </div>

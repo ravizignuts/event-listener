@@ -2,12 +2,15 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Mail\userlogin;
 use App\Event\UserCreated;
-use Illuminate\Auth\Events\Lockout;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
+use App\Events\SendMailEvent;
+use Illuminate\Auth\Events\Lockout;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
@@ -50,7 +53,8 @@ class LoginRequest extends FormRequest
             ]);
         }
         $user = Auth::User();
-        event(new UserCreated($user));
+        event(new SendMailEvent($user));
+        //Mail::to($user)->send(new userlogin($user));
 
         RateLimiter::clear($this->throttleKey());
     }

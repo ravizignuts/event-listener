@@ -18,8 +18,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        'App\Event\UserCreated'=>[
-            'App\Listener\SendEmail',//Write php artisan event:genrate in terminal to create this event and listener
+        // \App\Event\UserCreated::class=>[
+        //     \App\Listener\SendEmail::class,//Write php artisan event:genrate in terminal to create this event and listener
+        // ],
+
+        \App\Events\SendMailEvent::class => [
+            \App\Listeners\SendMailListener::class,
         ],
     ];
 
