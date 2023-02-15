@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\SharePostNotificationEvent;
+use App\Listeners\SharePostNotificationListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -24,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
 
         \App\Events\SendMailEvent::class => [
             \App\Listeners\SendMailListener::class,
+        ],
+        SharePostNotificationEvent::class =>[
+            SharePostNotificationListener::class,
         ],
     ];
 
