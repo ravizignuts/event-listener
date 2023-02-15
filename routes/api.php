@@ -1,12 +1,16 @@
 <?php
 
+use App\Models\User;
 use App\Mail\userlogin;
 use App\Event\UserCreated;
 use Illuminate\Http\Request;
 use App\Events\SendMailEvent;
+use App\Events\SharePostNotificationEvent;
+use App\Jobs\SharePostNotificationJob;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Notifications\SharePostNotification;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +37,18 @@ use Illuminate\Support\Facades\Route;
         // dd($user['email']);
         // Mail::to($user['email'])->send(new userlogin($user));
         event(new SendMailEvent($user));
+    });
+    Route::get('notification',function(){
+        // $user = [
+        //     'name'  => 'abc',
+        //     'email'  => 'abc@gmail.com',
+        // ];
+        // $user = User::first();
+        $user = User::inRandomOrder()->first();
+        event(new SharePostNotificationEvent($user));
+        // SharePostNotificationJob::dispatch($user);
+        // $user->notify(new SharePostNotification());
+        // return $user;
+        return "Notification sent successfully";
     });
 // });

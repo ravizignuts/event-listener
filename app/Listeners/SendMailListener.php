@@ -5,6 +5,7 @@ namespace App\Listeners;
 use Carbon\Carbon;
 use App\Mail\userlogin;
 use App\Events\SendMailEvent;
+use App\Jobs\SendMailJob;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\InteractsWithQueue;
@@ -40,6 +41,7 @@ class SendMailListener
             'created_at'=>$current_timestamp,
             'updated_at'=>$current_timestamp,
         ]);
-        Mail::to($event->user['email'])->send(new userlogin($event->user));
+        // SendMailJob::dispatch($userDetails);
+        // Mail::to($event->user['email'])->send(new userlogin($event->user));
     }
 }
